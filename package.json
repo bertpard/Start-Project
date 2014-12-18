@@ -1,0 +1,16 @@
+{
+  "name": "start",
+  "description": "start",
+  "version": "0.1.0",
+  "url": "",
+  "author": "Bert Pardaens",
+  "jssrc": "jssrc",
+  "js": "js",
+  "img": "img",
+  "css": "css",
+  "sass": "sass",
+  "devDependencies": {
+    "gulp-util": "~3.0.1",
+    "gulp": "~3.8.10"
+  }
+}
