@@ -1,0 +1,91 @@
+// =============================================================================
+// MOBILE FIRST MEDIA QUERIES WITH <IE9 fallback
+// =============================================================================
+
+// @see https://github.com/jakearchibald/sass-ie
+$fix-mqs: false !default;
+
+// min width query
+@mixin mq-min($width) {
+	@if $fix-mqs {
+		@if $fix-mqs >= $width {
+			@content;
+		}
+	}
+	@else {
+		@media screen and (min-width: $width) {
+			@content;
+		}
+	}
+}
+// max width query
+@mixin mq-max($width) {
+	@if $fix-mqs {
+		@if $fix-mqs <= ($width - 1) {
+			@content;
+		}
+	}
+	@else {
+		@media screen and (max-width: ($width - 1)) {
+			@content;
+		}
+	}
+}
+// single breakpoint query
+@mixin mq($width) {
+	@if $fix-mqs {
+		@if $fix-mqs <= $width {
+			@content;
+		}
+	}
+	@else {
+		@media screen and (min-width: $width) and (max-width: next-bp($width)) {
+			@content;
+		}
+	}
+}
+
+
+@mixin font-face($style-name, $file, $family, $category:"") {
+    $filepath: "../fonts/" + $family + "/" + $file;
+    @font-face {
+        font-family: "#{$style-name}";
+        src: url($filepath + ".eot");
+        src: url($filepath + ".eot?#iefix") format('embedded-opentype'), url($filepath + ".woff") format('woff'), url($filepath + ".ttf")  format('truetype'), url($filepath + ".svg#" + $style-name + "") format('svg');
+    }
+    %#{$style-name} {
+        font: {
+            @if $category != "" {
+                family: "#{$style-name}", #{$category};
+            }
+            @else {
+                family: "#{$style-name}";
+                weight: normal;
+            }
+        }
+    }
+}
+
+// For adding font icons to elements using CSS pseudo-elements
+// http://jaydenseric.com/blog/fun-with-sass-and-font-icons
+@mixin icon($position: before, $icon: false, $styles: true) {
+    @if $position == both {
+        $position: 'before, &:after';
+    }
+    // Either a :before or :after pseudo-element, or both, defaulting to :before
+    &:#{$position} {
+        @if $icon {
+            // A particular icon has been specified
+            content: "#{map-get($icons, $icon)}";
+        }
+        @if $styles {
+            // Supportive icon styles required
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            font-family: 'Icons';
+        }
+        // Include any extra rules supplied for the pseudo-element
+        @content;
+    }
+}
