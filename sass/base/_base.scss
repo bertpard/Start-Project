@@ -1,0 +1,19 @@
+@include font-face('icomoon', 'icomoon', 'icomoon', 'serif');
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+	font-family: helvetica;
+}
+
+h1 {
+	font-size: 3em;
+}
+
+h2 {
+	font-size: 2em;
+}

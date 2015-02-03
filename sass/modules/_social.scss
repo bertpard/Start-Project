@@ -1,0 +1,15 @@
+.social {
+	font-family: icomoon;
+	.phone {
+		@include icon(before, phone, false);
+	}
+	.mail {
+		@include icon(before, mail, false);
+	}
+	.twitter {
+		@include icon(before, twitter, false);
+	}
+	.linkedin {
+		@include icon(before, linkedin, false);
+	}
+}
